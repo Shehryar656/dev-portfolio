@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Shehryar | DevOps Engineer</title>
+
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+ <style>
+ :root {
+ --black: #050705;
+ --black-soft: #0a0e0b;
+ --panel: #0e1510;
+ --panel-light: #142019;
+ --green: #70ff9c;
+ --green-soft: #b4ffca;
+ --red: #ff3b4f;
+ --red-soft: #ff7c89;
+ --text: #edf7ef;
+ --muted: #93a69a;
+ --line: rgba(112, 255, 156, 0.18);
+ --mono: "DM Mono", monospace;
+ --sans: "Manrope", sans-serif;
+ }
+
+ * {
+ box-sizing: border-box;
+ scroll-behavior: smooth;
+ }
+
+ body {
+ margin: 0;
+ font-family: var(--sans);
+ color: var(--text);
+ background:
+ radial-gradient(circle at 85% 0%, rgba(255, 59, 79, 0.13), transparent 28rem),
+ radial-gradient(circle at 15% 28%, rgba(112, 255, 156, 0.11), transparent 32rem),
+ var(--black);
+ overflow-x: hidden;
+ }
+
+ body::before {
+ content: "";
+ position: fixed;
+ inset: 0;
+ pointer-events: none;
+ opacity: 0.08;
+ z-index: 100;
+ background-image:
+ linear-gradient(rgba(112, 255, 156, 0.3) 1px, transparent 1px),
+ linear-gradient(90deg, rgba(112, 255, 156, 0.3) 1px, transparent 1px);
+ background-size: 52px 52px;
+ mask-image: linear-gradient(to bottom, black, transparent 80%);
+ }
+
+ a {
+ color: inherit;
+ text-decoration: none;
+ }
+
+.container {
+ width: min(1180px, calc(100% - 40px));
+ margin: auto;
+ }
+
+ /* Navbar */
+.navbar {
+ height: 82px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ position: relative;
+ z-index: 20;
+ }
+
+.brand {
+ font-size: 1.25rem;
+ font-weight: 800;
+ letter-spacing: -0.06em;
+ }
+
+.brand-code {
+ color: var(--green);
+ font-family: var(--mono);
+ margin-right: 8px;
+ }
+
+.brand-dot {
+ color: var(--red);
+ }
+
+.nav-links {
+ display: flex;
+ gap: 28px;
+ font-size: 0.86rem;
+ font-weight: 700;
+ color: var(--muted);
+ }
+
+.nav-links a:hover {
+ color: var(--green);
+ }
+
+.menu-button {
+ display: none;
+ border: 0;
+ background: transparent;
+ color: var(--green);
+ font-size: 1.65rem;
+ cursor: pointer;
+ }
+
+ /* Hero */
+.hero {
+ min-height: calc(100vh - 82px);
+ display: grid;
+ grid-template-columns: 1.04fr 0.96fr;
+ gap: 30px;
+ align-items: center;
+ padding: 55px 0 80px;
+ }
+
+.eyebrow,
+.section-label {
+ color: var(--green);
+ font: 0.74rem var(--mono);
+ letter-spacing: 0.12em;
+ }
+
+.eyebrow {
+ display: flex;
+ align-items: center;
+ gap: 9px;
+ }
+
+.availability-dot {
+ width: 9px;
+ height: 9px;
+ border-radius: 50%;
+ background: var(--green);
+ box-shadow: 0 0 18px var(--green);
+ animation: pulse 1.8s infinite;
+ }
+
+ h1 {
+ margin: 18px 0 0;
+ max-width: 720px;
+ font-size: clamp(3rem, 6.2vw, 5.8rem);
+ line-height: 1.02;
+ letter-spacing: -0.08em;
+ }
+
+ h1 span {
+ display: block;
+ color: var(--green);
+ text-shadow: 0 0 28px rgba(112, 255, 156, 0.15);
+ }
+
+.hero-description {
+ max-width: 620px;
+ margin: 25px 0;
+ color: var(--muted);
+ font-size: 1.03rem;
+ line-height: 1.85;
+ }
+
+.hero-description strong {
+ color: var(--green-soft);
+ }
+
+.hero-actions {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 12px;
+ margin-top: 32px;
+ }
+
+.button {
+ padding: 14px 19px;
+ border-radius: 9px;
+ font-size: 0.88rem;
+ font-weight: 800;
+ transition: 0.25s ease;
+ }
+
+.button:hover {
+ transform: translateY(-4px);
+ }
+
+.button-primary {
+ color: #031007;
+ background: var(--green);
+ box-shadow: 0 12px 30px rgba(112, 255, 156, 0.15);
+ }
+
+.button-secondary {
+ border: 1px solid rgba(255, 59, 79, 0.42);
+ background: rgba(255, 59, 79, 0.08);
+ color: #ffdce0;
+ }
+
+.button-secondary:hover {
+ background: rgba(255, 59, 79, 0.18);
+ border-color: var(--red);
+ }
+
+.hero-stats {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 27px;
+ margin-top: 48px;
+ }
+
+.hero-stats div {
+ display: grid;
+ gap: 5px;
+ }
+
+.hero-stats strong {
+ color: var(--green-soft);
+ font: 0.84rem var(--mono);
+ }
+
+.hero-stats span {
+ color: #687a6d;
+ font-size: 0.75rem;
+ }
+
+ /* 3D Scene */
+.scene {
+ min-height: 540px;
+ position: relative;
+ display: grid;
+ place-items: center;
+ perspective: 1000px;
+ }
+
+.scene-glow {
+ position: absolute;
+ width: 430px;
+ height: 430px;
+ border-radius: 50%;
+ background: radial-gradient(circle, rgba(112, 255, 156, 0.17), transparent 67%);
+ filter: blur(5px);
+ }
+
+.grid-floor {
+ position: absolute;
+ bottom: 42px;
+ width: 420px;
+ height: 230px;
+ transform: rotateX(67deg) rotateZ(45deg);
+ background-image:
+ linear-gradient(rgba(112, 255, 156, 0.20) 1px, transparent 1px),
+ linear-gradient(90deg, rgba(112, 255, 156, 0.20) 1px, transparent 1px);
+ background-size: 28px 28px;
+ mask-image: linear-gradient(to top, black, transparent);
+ animation: floorMove 5s linear infinite;
+ }
+
+.orbit {
+ position: absolute;
+ border: 1px solid rgba(112, 255, 156, 0.22);
+ border-radius: 50%;
+ animation: orbitRotate 16s linear infinite;
+ }
+
+.orbit-one {
+ width: 375px;
+ height: 375px;
+ }
+
+.orbit-two {
+ width: 480px;
+ height: 210px;
+ transform: rotate(-35deg);
+ animation-duration: 23s;
+ border-color: rgba(255, 59, 79, 0.25);
+ }
+
+.orbit-three {
+ width: 235px;
+ height: 470px;
+ transform: rotate(42deg);
+ animation-duration: 19s;
+ }
+
+.main-core {
+ width: 148px;
+ height: 148px;
+ z-index: 4;
+ display: grid;
+ place-content: center;
+ text-align: center;
+ border: 1px solid rgba(112, 255, 156, 0.72);
+ border-radius: 22px;
+ background: linear-gradient(145deg, #1d3625, #07100a);
+ box-shadow:
+ 0 0 25px rgba(112, 255, 156, 0.42),
+ 0 0 80px rgba(112, 255, 156, 0.12);
+ transform: rotateX(12deg) rotateY(-20deg) rotateZ(45deg);
+ animation: coreFloat 4.5s ease-in-out infinite;
+ }
+
+.main-core strong,
+.main-core small {
+ display: block;
+ transform: rotateZ(-45deg);
+ }
+
+.main-core strong {
+ color: var(--green);
+ font: 1.52rem var(--mono);
+ font-weight: 700;
+ }
+
+.main-core small {
+ color: var(--red-soft);
+ margin-top: 3px;
+ letter-spacing: 0.3em;
+ font-size: 0.6rem;
+ }
+
+.node {
+ position: absolute;
+ z-index: 3;
+ width: 102px;
+ min-height: 92px;
+ display: grid;
+ place-content: center;
+ gap: 5px;
+ border-radius: 15px;
+ text-align: center;
+ background: rgba(9, 18, 11, 0.88);
+ border: 1px solid rgba(112, 255, 156, 0.28);
+ box-shadow: 0 15px 40px rgba(0, 0, 0, 0.42);
+ animation: nodeFloat 4s ease-in-out infinite;
+ }
+
+.node span {
+ color: var(--green);
+ font-size: 1.45rem;
+ }
+
+.node small {
+ color: #c5d8ca;
+ font: 0.61rem var(--mono);
+ }
+
+.node-cloud {
+ top: 42px;
+ left: 54%;
+ animation-delay: 0.5s;
+ }
+
+.node-k8s {
+ bottom: 76px;
+ left: 8%;
+ animation-delay: 1.1s;
+ border-color: rgba(255, 59, 79, 0.34);
+ }
+
+.node-ci {
+ top: 178px;
+ right: 0;
+ animation-delay: 0.8s;
+ }
+
+.node-monitor {
+ bottom: 45px;
+ right: 14%;
+ animation-delay: 1.4s;
+ }
+
+.floating-label {
+ position: absolute;
+ z-index: 5;
+ padding: 7px 10px;
+ color: #b5c9bb;
+ border: 1px solid #294332;
+ background: rgba(5, 12, 7, 0.84);
+ border-radius: 100px;
+ font: 0.65rem var(--mono);
+ }
+
+.label-one {
+ top: 14%;
+ left: 4%;
+ color: var(--green);
+ }
+
+.label-two {
+ bottom: 17%;
+ left: 36%;
+ color: var(--red-soft);
+ border-color: rgba(255, 59, 79, 0.35);
+ }
+
+.label-three {
+ top: 32%;
+ right: 10%;
+ }
+
+ /* Sections */
+.section {
+ padding: 120px 0 0;
+ }
+
+.section-heading h2,
+.contact h2 {
+ margin: 13px 0 0;
+ font-size: clamp(2.1rem, 4vw, 3.5rem);
+ line-height: 1.12;
+ letter-spacing: -0.065em;
+ }
+
+.section-heading h2 span {
+ color: var(--green);
+ }
+
+ /* About */
+.about-grid {
+ margin-top: 48px;
+ display: grid;
+ grid-template-columns: 0.95fr 1.05fr;
+ align-items: center;
+ gap: 70px;
+ }
+
+.about-text {
+ color: var(--muted);
+ font-size: 1.03rem;
+ line-height: 1.9;
+ }
+
+.terminal-card {
+ overflow: hidden;
+ border: 1px solid rgba(112, 255, 156, 0.24);
+ border-radius: 14px;
+ background: #071008;
+ box-shadow: 0 22px 50px rgba(0, 0, 0, 0.32);
+ }
+
+.terminal-bar {
+ height: 45px;
+ display: flex;
+ align-items: center;
+ gap: 7px;
+ padding: 0 16px;
+ background: #0f1a12;
+ border-bottom: 1px solid rgba(112, 255, 156, 0.12);
+ }
+
+.terminal-dot {
+ width: 9px;
+ height: 9px;
+ border-radius: 50%;
+ background: var(--red);
+ }
+
+.terminal-dot:nth-child(2) {
+ background: #ffca5c;
+ }
+
+.terminal-dot:nth-child(3) {
+ background: var(--green);
+ }
+
+.terminal-title {
+ margin-left: 7px;
+ color: #8da195;
+ font: 0.67rem var(--mono);
+ }
+
+.terminal-content {
+ padding: 24px;
+ color: #c2d1c6;
+ font: 0.78rem/1.95 var(--mono);
+ }
+
+.terminal-command {
+ color: var(--green);
+ margin: 0;
+ }
+
+.terminal-output {
+ color: #9bb09f;
+ margin: 0 0 13px;
+ }
+
+.terminal-success {
+ color: var(--green);
+ margin: 0;
+ }
+
+ /* Skills */
+.skills-grid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 15px;
+ margin-top: 47px;
+ }
+
+.skill-card {
+ min-height: 194px;
+ padding: 24px;
+ border-radius: 14px;
+ border: 1px solid rgba(112, 255, 156, 0.16);
+ background: linear-gradient(145deg, rgba(19, 32, 22, 0.9), rgba(7, 12, 8, 0.88));
+ transition: 0.28s ease;
+ }
+
+.skill-card:hover {
+ transform: translateY(-8px);
+ border-color: var(--green);
+ box-shadow: 0 18px 42px rgba(112, 255, 156, 0.09);
+ }
+
+.skill-card:nth-child(2n):hover {
+ border-color: var(--red);
+ box-shadow: 0 18px 42px rgba(255, 59, 79, 0.10);
+ }
+
+.skill-icon {
+ font-size: 1.4rem;
+ }
+
+.skill-card h3 {
+ margin: 20px 0 8px;
+ font-size: 1.04rem;
+ }
+
+.skill-card p {
+ margin: 0;
+ color: var(--muted);
+ font-size: 0.83rem;
+ line-height: 1.75;
+ }
+
+ /* Workflow */
+.workflow-wrapper {
+ margin-top: 48px;
+ padding: 35px;
+ overflow: hidden;
+ border: 1px solid rgba(112, 255, 156, 0.20);
+ border-radius: 18px;
+ background:
+ radial-gradient(circle at 50% 0%, rgba(112, 255, 156, 0.07), transparent 50%),
+ #081009;
+ }
+
+.workflow-intro {
+ max-width: 660px;
+ color: var(--muted);
+ line-height: 1.8;
+ margin: 0 0 36px;
+ }
+
+.workflow-track {
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ position: relative;
+ gap: 18px;
+ }
+
+.workflow-track::before {
+ content: "";
+ position: absolute;
+ height: 2px;
+ top: 56px;
+ left: 11%;
+ right: 11%;
+ background: rgba(112, 255, 156, 0.18);
+ }
+
+.flow-pulse {
+ position: absolute;
+ top: 52px;
+ left: 10%;
+ width: 12px;
+ height: 12px;
+ border-radius: 50%;
+ background: var(--red);
+ box-shadow: 0 0 18px var(--red);
+ animation: flowMove 5.5s linear infinite;
+ z-index: 3;
+ }
+
+.workflow-step {
+ position: relative;
+ z-index: 2;
+ text-align: center;
+ }
+
+.workflow-number {
+ width: 72px;
+ height: 72px;
+ margin: auto;
+ display: grid;
+ place-items: center;
+ border-radius: 50%;
+ color: var(--green);
+ border: 1px solid rgba(112, 255, 156, 0.48);
+ background: #0b160d;
+ font: 0.85rem var(--mono);
+ box-shadow: 0 0 30px rgba(112, 255, 156, 0.08);
+ }
+
+.workflow-step:nth-child(3).workflow-number {
+ border-color: rgba(255, 59, 79, 0.65);
+ color: var(--red-soft);
+ }
+
+.workflow-step h3 {
+ margin: 19px 0 9px;
+ font-size: 1rem;
+ }
+
+.workflow-step p {
+ max-width: 220px;
+ margin: auto;
+ color: var(--muted);
+ font-size: 0.8rem;
+ line-height: 1.7;
+ }
+
+ /* Projects */
+.projects-top {
+ display: flex;
+ justify-content: space-between;
+ align-items: end;
+ gap: 20px;
+ }
+
+.project-note {
+ color: var(--red-soft);
+ font: 0.7rem var(--mono);
+ white-space: nowrap;
+ }
+
+.projects-list {
+ margin-top: 45px;
+ border-top: 1px solid var(--line);
+ }
+
+.project-card {
+ display: grid;
+ grid-template-columns: 94px 1fr 35px;
+ align-items: center;
+ gap: 24px;
+ padding: 29px 8px;
+ border-bottom: 1px solid var(--line);
+ transition: 0.25s ease;
+ }
+
+.project-card:hover {
+ background: rgba(112, 255, 156, 0.035);
+ padding-left: 18px;
+ padding-right: 18px;
+ }
+
+.project-number {
+ color: var(--green);
+ font: 0.78rem var(--mono);
+ }
+
+.project-main h3 {
+ margin: 0;
+ font-size: 1.24rem;
+ }
+
+.project-main p {
+ margin: 11px 0 15px;
+ color: var(--muted);
+ font-size: 0.9rem;
+ line-height: 1.7;
+ }
+
+.tags {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 7px;
+ }
+
+.tags span {
+ padding: 6px 9px;
+ color: #b6cab9;
+ border: 1px solid rgba(112, 255, 156, 0.20);
+ border-radius: 100px;
+ font: 0.64rem var(--mono);
+ }
+
+.project-arrow {
+ color: var(--red);
+ font-size: 1.65rem;
+ }
+
+ /* Contact */
+.contact {
+ margin-top: 125px;
+ margin-bottom: 70px;
+ padding: 75px 7%;
+ text-align: center;
+ border-radius: 20px;
+ border: 1px solid rgba(112, 255, 156, 0.28);
+ background:
+ radial-gradient(circle at 50% 0%, rgba(112, 255, 156, 0.14), transparent 55%),
+ radial-gradient(circle at 75% 100%, rgba(255, 59, 79, 0.10), transparent 40%),
+ rgba(9, 17, 10, 0.85);
+ }
+
+.contact h2 {
+ max-width: 740px;
+ margin-left: auto;
+ margin-right: auto;
+ }
+
+.contact h2 span {
+ color: var(--green);
+ }
+
+.contact-description {
+ max-width: 570px;
+ margin: 20px auto 0;
+ color: var(--muted);
+ line-height: 1.8;
+ }
+
+.email-link {
+ display: inline-block;
+ margin-top: 29px;
+ padding-bottom: 7px;
+ border-bottom: 1px solid var(--green);
+ color: var(--green);
+ font-size: clamp(1.1rem, 3vw, 1.65rem);
+ font-weight: 800;
+ }
+
+.email-link:hover {
+ color: var(--red-soft);
+ border-color: var(--red);
+ }
+
+ footer {
+ display: flex;
+ justify-content: space-between;
+ gap: 20px;
+ padding: 24px 0 35px;
+ color: #6f8173;
+ font: 0.7rem var(--mono);
+ }
+
+ footer a:hover {
+ color: var(--green);
+ }
+
+ /* Animations */
+ @keyframes pulse {
+ 0%, 100% { opacity: 1; transform: scale(1); }
+ 50% { opacity: 0.45; transform: scale(0.72); }
+ }
+
+ @keyframes coreFloat {
+ 0%, 100% {
+ transform: rotateX(12deg) rotateY(-20deg) rotateZ(45deg) translateY(0);
+ }
+ 50% {
+ transform: rotateX(18deg) rotateY(-35deg) rotateZ(45deg) translateY(-16px);
+ }
+ }
+
+ @keyframes nodeFloat {
+ 0%, 100% { transform: translateY(0); }
+ 50% { transform: translateY(-14px); }
+ }
+
+ @keyframes orbitRotate {
+ from { rotate: 0deg; }
+ to { rotate: 360deg; }
+ }
+
+ @keyframes floorMove {
+ from { background-position: 0 0; }
+ to { background-position: 0 56px; }
+ }
+
+ @keyframes flowMove {
+ 0% { left: 10%; opacity: 0; }
+ 7% { opacity: 1; }
+ 92% { opacity: 1; }
+ 100% { left: 89%; opacity: 0; }
+ }
+
+ @media (max-width: 900px) {
+.hero {
+ grid-template-columns: 1fr;
+ }
+
+.scene {
+ min-height: 450px;
+ }
+
+.skills-grid {
+ grid-template-columns: repeat(2, 1fr);
+ }
+
+.about-grid {
+ grid-template-columns: 1fr;
+ gap: 28px;
+ }
+
+.workflow-track {
+ grid-template-columns: repeat(2, 1fr);
+ row-gap: 35px;
+ }
+
+.workflow-track::before,
+.flow-pulse {
+ display: none;
+ }
+ }
+
+ @media (max-width: 620px) {
+.container {
+ width: calc(100% - 30px);
+ }
+
+.navbar {
+ height: 70px;
+ }
+
+.menu-button {
+ display: block;
+ }
+
+.nav-links {
+ display: none;
+ position: absolute;
+ top: 60px;
+ right: 0;
+ width: 190px;
+ padding: 15px;
+ flex-direction: column;
+ gap: 16px;
+ border-radius: 12px;
+ border: 1px solid rgba(112, 255, 156, 0.24);
+ background: #0b130d;
+ }
+
+.nav-links.show {
+ display: flex;
+ }
+
+.hero {
+ min-height: auto;
+ padding: 64px 0 35px;
+ }
+
+.scene {
+ min-height: 345px;
+ transform: scale(0.69);
+ margin: -45px -78px;
+ }
+
+.section {
+ padding-top: 82px;
+ }
+
+.skills-grid {
+ grid-template-columns: 1fr;
+ }
+
+.workflow-wrapper {
+ padding: 27px 18px;
+ }
+
+.workflow-track {
+ grid-template-columns: 1fr;
+ }
+
+.projects-top {
+ display: block;
+ }
+
+.project-note {
+ margin-top: 12px;
+ }
+
+.project-card {
+ grid-template-columns: 1fr 30px;
+ gap: 12px;
+ }
+
+.project-number {
+ grid-column: 1 / -1;
+ }
+
+.project-arrow {
+ grid-column: 2;
+ grid-row: 2;
+ }
+
+.contact {
+ margin-top: 88px;
+ padding: 55px 20px;
+ }
+
+ footer {
+ flex-direction: column;
+ }
+ }
+ </style>
+</head>
+
+<body>
+ <nav class="navbar container">
+ <a href="#home" class="brand">
+ <span class="brand-code">&lt;/&gt;</span>
+ Shehryar<span class="brand-dot">.</span>
+ </a>
+
+ <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
+
+ <div class="nav-links" id="navLinks">
+ <a href="#about">About</a>
+ <a href="#skills">Skills</a>
+ <a href="#workflow">Workflow</a>
+ <a href="#projects">Projects</a>
+ <a href="#contact">Contact</a>
+ </div>
+ </nav>
+
+ <main>
+ <section class="hero container" id="home">
+ <div>
+ <p class="eyebrow">
+ <span class="availability-dot"></span>
+ AVAILABLE FOR DEVOPS OPPORTUNITIES
+ </p>
+
+ <h1>
+ Engineering systems
+ <span>that deploy with confidence.</span>
+ </h1>
+
+ <p class="hero-description">
+ I am <strong>Shehryar</strong>, a Mid-Level DevOps Engineer
+ focused on cloud infrastructure, CI/CD automation, Kubernetes,
+ Infrastructure as Code, security, and observability.
+ </p>
+
+ <div class="hero-actions">
+ <a href="#projects" class="button button-primary">View My Work ↗</a>
+ <a href="mailto:syar19013@gmail.com" class="button button-secondary">
+ Contact Me ✉
+ </a>
+ </div>
+
+ <div class="hero-stats">
+ <div>
+ <strong>CI/CD</strong>
+ <span>Automated delivery</span>
+ </div>
+ <div>
+ <strong>IaC</strong>
+ <span>Repeatable systems</span>
+ </div>
+ <div>
+ <strong>SRE</strong>
+ <span>Reliable operations</span>
+ </div>
+ </div>
+ </div>
+
+ <div class="scene" aria-label="Animated DevOps infrastructure visual">
+ <div class="scene-glow"></div>
+ <div class="grid-floor"></div>
+
+ <div class="orbit orbit-one"></div>
+ <div class="orbit orbit-two"></div>
+ <div class="orbit orbit-three"></div>
+
+ <div class="main-core">
+ <strong>DEV</strong>
+ <small>OPS</small>
+ </div>
+
+ <div class="node node-cloud">
+ <span>☁</span>
+ <small>CLOUD</small>
+ </div>
+
+ <div class="node node-k8s">
+ <span>⎈</span>
+ <small>KUBERNETES</small>
+ </div>
+
+ <div class="node node-ci">
+ <span>⚙</span>
+ <small>CI / CD</small>
+ </div>
+
+ <div class="node node-monitor">
+ <span>◉</span>
+ <small>MONITOR</small>
+ </div>
+
+ <div class="floating-label label-one">terraform</div>
+ <div class="floating-label label-two">secure pipelines</div>
+ <div class="floating-label label-three">grafana</div>
+ </div>
+ </section>
+
+ <section class="section container" id="about">
+ <div class="section-heading">
+ <p class="section-label">01 / ABOUT ME</p>
+ <h2>Automation first. <span>Reliability always.</span></h2>
+ </div>
+
+ <div class="about-grid">
+ <p class="about-text">
+ I work between development and operations to make software
+ delivery faster, safer, and scalable. My focus is building
+ automated infrastructure, reliable release pipelines, secure
+ cloud environments, and monitoring systems that help teams
+ detect and solve issues quickly.
+ </p>
+
+ <div class="terminal-card">
+ <div class="terminal-bar">
+ <span class="terminal-dot"></span>
+ <span class="terminal-dot"></span>
+ <span class="terminal-dot"></span>
+ <span class="terminal-title">shehryar@devops:~</span>
+ </div>
+
+ <div class="terminal-content">
+ <p class="terminal-command">➜ whoami</p>
+ <p class="terminal-output">Mid-Level DevOps Engineer</p>
+
+ <p class="terminal-command">➜ expertise</p>
+ <p class="terminal-output">Cloud · CI/CD · Kubernetes · IaC</p>
+
+ <p class="terminal-command">➜ system-status</p>
+ <p class="terminal-success">● All systems operational</p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <section class="section container" id="skills">
+ <div class="section-heading">
+ <p class="section-label">02 / TOOLKIT</p>
+ <h2>Tools behind <span>dependable delivery.</span></h2>
+ </div>
+
+ <div class="skills-grid">
+ <article class="skill-card">
+ <div class="skill-icon">☁️</div>
+ <h3>Cloud Infrastructure</h3>
+ <p>AWS · EC2 · S3 · IAM · VPC · Load Balancers</p>
+ </article>
+
+ <article class="skill-card">
+ <div class="skill-icon">🐳</div>
+ <h3>Containers</h3>
+ <p>Docker · Kubernetes · Helm · AWS EKS</p>
+ </article>
+
+ <article class="skill-card">
+ <div class="skill-icon">⚙️</div>
+ <h3>CI/CD Automation</h3>
+ <p>GitHub Actions · Jenkins · Argo CD · GitOps</p>
+ </article>
+
+ <article class="skill-card">
+ <div class="skill-icon">🏗️</div>
+ <h3>Infrastructure as Code</h3>
+ <p>Terraform · Ansible · Linux · Bash</p>
+ </article>
+
+ <article class="skill-card">
+ <div class="skill-icon">📊</div>
+ <h3>Observability</h3>
+ <p>Prometheus · Grafana · Loki · Alertmanager</p>
+ </article>
+
+ <article class="skill-card">
+ <div class="skill-icon">🔐</div>
+ <h3>DevSecOps</h3>
+ <p>Trivy · IAM · Secrets · Image Scanning</p>
+ </article>
+ </div>
+ </section>
+
+ <section class="section container" id="workflow">
+ <div class="section-heading">
+ <p class="section-label">03 / HOW I WORK</p>
+ <h2>From code to <span>stable production.</span></h2>
+ </div>
+
+ <div class="workflow-wrapper">
+ <p class="workflow-intro">
+ This animated pipeline represents my DevOps approach: requirements
+ are converted into automated infrastructure, secure deployments,
+ and continuously monitored production systems.
+ </p>
+
+ <div class="workflow-track">
+ <span class="flow-pulse"></span>
+
+ <article class="workflow-step">
+ <div class="workflow-number">01</div>
+ <h3>Plan</h3>
+ <p>Understand requirements, risks, architecture, and security needs.</p>
+ </article>
+
+ <article class="workflow-step">
+ <div class="workflow-number">02</div>
+ <h3>Automate</h3>
+ <p>Create repeatable infrastructure with Terraform, scripts, and pipelines.</p>
+ </article>
+
+ <article class="workflow-step">
+ <div class="workflow-number">03</div>
+ <h3>Deploy</h3>
+ <p>Build, test, scan, and release applications with CI/CD automation.</p>
+ </article>
+
+ <article class="workflow-step">
+ <div class="workflow-number">04</div>
+ <h3>Observe</h3>
+ <p>Track metrics, logs, alerts, health, and improve reliability continuously.</p>
+ </article>
+ </div>
+ </div>
+ </section>
+
+ <section class="section container" id="projects">
+ <div class="projects-top">
+ <div class="section-heading">
+ <p class="section-label">04 / SELECTED WORK</p>
+ <h2>Built to perform <span>under pressure.</span></h2>
+ </div>
+
+ <p class="project-note">CONCEPT / DEMO PROJECTS</p>
+ </div>
+
+ <div class="projects-list">
+ <article class="project-card">
+ <span class="project-number">01</span>
+
+ <div class="project-main">
+ <h3>Kubernetes Platform Automation</h3>
+ <p>
+ Built repeatable Kubernetes environments using Infrastructure
+ as Code, Helm charts, and GitOps deployment workflows.
+ </p>
+
+ <div class="tags">
+ <span>Terraform</span>
+ <span>AWS EKS</span>
+ <span>Kubernetes</span>
+ <span>Helm</span>
+ <span>Argo CD</span>
+ </div>
+ </div>
+
+ <span class="project-arrow">↗</span>
+ </article>
+
+ <article class="project-card">
+ <span class="project-number">02</span>
+
+ <div class="project-main">
+ <h3>Secure CI/CD Delivery Pipeline</h3>
+ <p>
+ Automated pipeline for container builds, security scanning,
+ image publishing, and deployment automation.
+ </p>
+
+ <div class="tags">
+ <span>GitHub Actions</span>
+ <span>Docker</span>
+ <span>Trivy</span>
+ <span>AWS</span>
+ <span>CI/CD</span>
+ </div>
+ </div>
+
+ <span class="project-arrow">↗</span>
+ </article>
+
+ <article class="project-card">
+ <span class="project-number">03</span>
+
+ <div class="project-main">
+ <h3>Observability & Incident Response</h3>
+ <p>
+ Centralized metrics, logs, dashboards, alerts, and incident
+ visibility to improve reliability and reduce response time.
+ </p>
+
+ <div class="tags">
+ <span>Prometheus</span>
+ <span>Grafana</span>
+ <span>Loki</span>
+ <span>Alertmanager</span>
+ <span>Linux</span>
+ </div>
+ </div>
+
+ <span class="project-arrow">↗</span>
+ </article>
+ </div>
+ </section>
+
+ <section class="contact container" id="contact">
+ <p class="section-label">05 / LET'S CONNECT</p>
+ <h2>Let’s build systems that <span>scale and deliver.</span></h2>
+
+ <p class="contact-description">
+ Have a DevOps role, cloud automation project, CI/CD challenge,
+ or infrastructure requirement? Let’s talk.
+ </p>
+
+ <a href="mailto:syar19013@gmail.com" class="email-link">
+ syar19013@gmail.com ↗
+ </a>
+ </section>
+ </main>
+
+ <footer class="container">
+ <span>© 2026 Shehryar. Built for reliable systems.</span>
+ <a href="#home">Back to top ↑</a>
+ </footer>
+
+ <script>
+ const menuButton = document.getElementById("menuButton");
+ const navLinks = document.getElementById("navLinks");
+
+ menuButton.addEventListener("click", () => {
+ navLinks.classList.toggle("show");
+
+ menuButton.textContent = navLinks.classList.contains("show")
+ ? "✕"
+ : "☰";
+ });
+
+ document.querySelectorAll(".nav-links a").forEach((link) => {
+ link.addEventListener("click", () => {
+ navLinks.classList.remove("show");
+ menuButton.textContent = "☰";
+ });
+ });
+ </script>
+</body>
+</html>
